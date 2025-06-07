@@ -21,3 +21,4 @@ def generarBombas():
 
 filas, columnas = leeValida(3, 15)
 print(generarBombas())
+x = 2
