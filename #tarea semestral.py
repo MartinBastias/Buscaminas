@@ -16,9 +16,17 @@ def generarBombas():
     return random.randint(1, int((filas*columnas)/4)) 
 
 #generar tablero
-
-
-
 filas, columnas = leeValida(3, 15)
+tablero = []
+for i in range (filas):
+    tablero.append([])
+for i in tablero:
+    for x in range(columnas):
+        i.append(".")
+
+
+tablero[1][2] = "4"
+#print tablero codigo
 print(generarBombas())
-x = 2
+for i in tablero:
+    print(i)
