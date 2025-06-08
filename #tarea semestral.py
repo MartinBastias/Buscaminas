@@ -12,7 +12,7 @@ def leeValida(m, M):
     return f,c
 
 #cantidad de bombas aleatorias entre 1 y f,c / 4
-def generarBombas():
+def generarCBombas():
     return random.randint(1, int((filas*columnas)/4)) 
 
 #generar tablero
@@ -24,9 +24,20 @@ for i in tablero:
     for x in range(columnas):
         i.append(".")
 
+#generar posicion de bobmbas
+def pb():
+    return  random.randint(1, filas), random.randint(1, columnas) 
+posicionb = []
 
-tablero[1][2] = "4"
+cb = generarCBombas()
+for i in range (cb):
+    posicionb.append(pb())
+    for p in posicionb:
+        tablero[p[0]-1][p[1]-1] = "b"
+    
+
 #print tablero codigo
-print(generarBombas())
+print(cb)
+print(posicionb)
 for i in tablero:
     print(i)
