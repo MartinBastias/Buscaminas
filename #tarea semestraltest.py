@@ -93,9 +93,9 @@ while len(set(posicionb)) < len(posicionb):
     if len(set(posicionb)) == len(posicionb):
         break
 
-#Esto es informacion para nosotros, sirve como un debug de la cantidad de bombas u sus posiciones
-print(cb) 
-print(posicionb)
+#Esto es informacion para nosotros, sirve como un 'debug' de la cantidad de bombas u sus posiciones
+#print(cb) 
+#print(posicionb)
 
 #Bucle del juego
 while True:
@@ -104,8 +104,7 @@ while True:
     
     if perderosguir() == False: #Evalua que se haya pisado una bomba, entregando False si se hizo y True cuando no.
         for i in range(filas):
-            for j in range(columnas):
-                tablero[i][j] = "*"
+            print(columnas*"*")
         print("Perdiste, Gana el computador!! ")
         break
 
