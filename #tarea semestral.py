@@ -5,22 +5,36 @@ cb = 0
 posicionb = []
 tablero = []
 
+
+def Leevalentero(txt): #Asegura que la entrada sea un valor entero, descartando y entregando un valor de error cuando no lo sea
+    while True:
+        try:
+            x = input(txt) #Ingresas algo al computador
+            int(x) #Pasar el input a entero 
+            break
+        except ValueError:
+            print('Error, valor ingresado debe ser un numero entero')
+    return int(x)
+
 def leeValidaTablero(m, M):
-    f = int(input("Ingresa cantidad de filas: "))
+    f = Leevalentero('Ingrese cantidad de filas: ')
     while not m <= f <= M:
-        f = int(input(f"Reingresa la cantidad de filas entre {m} y {M}: "))
-    c = int(input("Ingresa cantidad de columnas: "))
+        print(f"Error. Reingresa la cantidad de filas y asegurate de que la entrada este entre {m} y {M}: ")
+        f = Leevalentero('Ingrese cantidad de filas: ')
+
+    c = Leevalentero('Ingrese cantidad de columnas: ')
     while not m <= c <= M:
-        c = int(input(f"Reingresa la cantidad de columnas entre {m} y {M}: "))
+        print(f"Error. Reingresa la cantidad de columnas y asegurate de que la entrada este entre {m} y {M}: ")
+        c = Leevalentero('Ingrese cantidad de columnas: ')
     return f,c
 
 def leeValidaCoordenadas(f, c):
-    fila = int(input("Ingresa fila: "))
+    fila = Leevalentero("Ingresa fila: ")
     while not 1 <= fila <= f:
-        fila = int(input(f"Valor fuera de rango, debes ingresar un valor entre 1 y {f}: "))
-    columna = int(input("Ingresa columna: "))
+        fila = Leevalentero(f"Valor fuera de rango, debes ingresar un valor entre 1 y {f}: ")
+    columna = Leevalentero("Ingresa columna: ")
     while not 1 <= columna <= c:
-        columna = int(input(f"Valor fuera de rango, debes ingresar un valor entre 1 y {c}: "))
+        columna = Leevalentero(f"Valor fuera de rango, debes ingresar un valor entre 1 y {c}: ")
     return fila, columna
 
 def generarCantidadBombas():
@@ -87,15 +101,15 @@ crearTablero()
 cb = generarCantidadBombas()
 prepararBombas()
 while len(set(posicionb)) < len(posicionb): #previene que se juegue una partida con bombas repetidas
-    tablero.clear
+    tablero.clear()
     crearTablero()
-    posicionb.clear
+    posicionb.clear()
     cb = generarCantidadBombas()
     prepararBombas()
     if len(set(posicionb)) == len(posicionb):
         break
 print(cb) #esto es informacion para nosotros, la cantuidad de bombas u sus posiciones
-print(posicionb)
+#print(posicionb)
 
 while True:#bucle del juego
     desplegartablero()
@@ -103,7 +117,7 @@ while True:#bucle del juego
     
     if perderosguir() == False:
         desplegartablerobombas()
-        print("perdiste, gana el pc ! ! ! ")
+        print("perdiste, gana el pepe ! ! ! ")
         break
 
     tablero[coordjug[0]-1][coordjug[1]-1] = bombasalrededor() # ssta linea hay que dejarla si o si despues de verificar si se pierde
