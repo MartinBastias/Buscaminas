@@ -31,7 +31,7 @@ def prepararBombas(): #Coloca bombas y marca "*" en cada posición
     for i in range(cb):
         posicionb.append(pb())
         for p in posicionb:
-            tablero[p[0]-1][p[1]-1] = '*'
+            tablero[p[0]-1][p[1]-1] = "*"
     
 def bombasalrededor(): #Cuenta la cantidad de bombas en las 8 celdas vecinas a la coordenada
     b = 0
@@ -42,13 +42,13 @@ def bombasalrededor(): #Cuenta la cantidad de bombas en las 8 celdas vecinas a l
         rf = (coordjug[0]-1) + i[0] # revisa filas
         rc = (coordjug[1]-1) + i[1] # revisa columnas
         if (0 <= rf <= filas-1) and (0 <= rc <= columnas-1): # Por temas de como se lee la lista se debe restar 1 al rango de posiciones
-            if tablero[rf][rc] == '*':
+            if tablero[rf][rc] == "*":
                 b +=1
     return b
 
 
 def perderosguir(): #Retorna True si la casilla elegida tiene una mina
-    return tablero[coordjug[0]-1][coordjug[1]-1] == '*'
+    return tablero[coordjug[0]-1][coordjug[1]-1] == "*"
     
 
 def ganar(): #Retorna True si no quedan casillas ("#") por descubrir
@@ -62,7 +62,7 @@ def desplegartablero(): #Imprime el tablero ocultando las bombas (muestra '#' do
     for posicion in tablero:
         f=""
         for i in posicion:
-            f+=(str(i).replace('*', '#'))
+            f+=(str(i).replace("*", "#"))
         print(f)
 
 def crearTablero(): #Inicializa 'tablero' como matriz filas×columnas llena de '#'
@@ -74,10 +74,10 @@ def crearTablero(): #Inicializa 'tablero' como matriz filas×columnas llena de '
     
             
 #Ingreso de Variables para el Tablero y implementacion de bombas
-filas = leeValidaGeneral('Cantidad de filas',3, 15)
+filas = leeValidaGeneral("Cantidad de filas",3, 15)
 columnas = leeValidaGeneral('Cantidad de columnas',3, 15)
 crearTablero()
-cb = leeValidaGeneral('Cantidad de bombas',1,int(filas*columnas/4))
+cb = leeValidaGeneral("Cantidad de bombas",1,int(filas*columnas/4))
 prepararBombas()
 
 #Previene posiciones duplicadas de bombas
@@ -102,8 +102,8 @@ while len(set(posicionb)) < len(posicionb):
 # 5. Chequea victoria
 while True:
     desplegartablero()
-    coordjug[0] = leeValidaGeneral('fila',1,filas)
-    coordjug[1] = leeValidaGeneral('columna',1,columnas)
+    coordjug[0] = leeValidaGeneral("fila",1,filas)
+    coordjug[1] = leeValidaGeneral("columna",1,columnas)
     
     if perderosguir(): 
         for i in range(filas):
