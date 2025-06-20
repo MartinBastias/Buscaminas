@@ -88,7 +88,7 @@ while len(set(posicionb)) < len(posicionb):
     if len(set(posicionb)) == len(posicionb):
         break
 
-# Debug: conoce ubicación real de las bombas
+# Debug: conoce ubicación y cantidad real de las bombas
 #print(cb) 
 #print(posicionb)
 
@@ -101,8 +101,9 @@ while len(set(posicionb)) < len(posicionb):
 # 5. Chequea victoria
 while True:
     desplegartablero()
-    coordjug[0] = leeValidaGeneral('fila',1,filas)
-    coordjug[1] = leeValidaGeneral('columna',1,columnas)
+    coordjug[1] = leeValidaGeneral('fila',1,filas)
+    coordjug[0] = leeValidaGeneral('columna',1,columnas)
+    
     
     if perderosguir(): 
         for i in range(filas):
