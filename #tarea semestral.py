@@ -6,7 +6,6 @@ coordjug = [0, 0] #Coordenadas de juego (fila y columna)
 posicionb = [] #lista de las posiciones de bombas
 tablero = [] #Lista modificable del tablero (para # o *)
 
-
 def Leevalentero(txt): #Pide un valor entero, repitiendo hasta que la entrada sea válida
     while True:
         try:
@@ -46,12 +45,12 @@ def bombasalrededor(): #Cuenta la cantidad de bombas en las 8 celdas vecinas a l
                 b +=1
     return b
 
-# Retorna True si la casilla elegida tiene una mina
-def perderosguir():
+
+def perderosguir(): #Retorna True si la casilla elegida tiene una mina
     return tablero[coordjug[0]-1][coordjug[1]-1] == '*'
     
-# Retorna True si no quedan casillas ("#") por descubrir
-def ganar():
+
+def ganar(): #Retorna True si no quedan casillas ("#") por descubrir
     for fila in tablero:
         if "#" in fila:
             return False
@@ -90,8 +89,8 @@ while len(set(posicionb)) < len(posicionb):
         break
 
 # Debug: conoce ubicación real de las bombas
-print(cb) 
-print(posicionb)
+#print(cb) 
+#print(posicionb)
 
 
 # Bucle principal:
