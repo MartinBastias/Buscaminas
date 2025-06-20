@@ -3,6 +3,7 @@
 import random
 
 coordjug = [0, 0] #Coordenadas de juego (fila y columna)
+coordreg = [] #Coordenadas registradas 
 posicionb = [] #lista de las posiciones de bombas
 tablero = [] #Lista modificable del tablero (para # o *)
 
@@ -88,7 +89,7 @@ while len(set(posicionb)) < len(posicionb):
     if len(set(posicionb)) == len(posicionb):
         break
 
-# Debug: conoce ubicación y cantidad real de las bombas
+# DEBUG: conoce ubicación real de las bombas
 #print(cb) 
 #print(posicionb)
 
@@ -101,17 +102,22 @@ while len(set(posicionb)) < len(posicionb):
 # 5. Chequea victoria
 while True:
     desplegartablero()
-    coordjug[1] = leeValidaGeneral('fila',1,filas)
-    coordjug[0] = leeValidaGeneral('columna',1,columnas)
-    
+    coordjug[0] = leeValidaGeneral('fila',1,filas)
+    coordjug[1] = leeValidaGeneral('columna',1,columnas)
     
     if perderosguir(): 
         for i in range(filas):
             print(columnas*"*")
         print("Perdiste, Gana el computador!! ")
-        break
-
-    tablero[coordjug[0]-1][coordjug[1]-1] = bombasalrededor() 
+        print(f'las bombas se encontraban en {posicionb}')
+        break 
+        
+    tablero[coordjug[0]-1][coordjug[1]-1] = bombasalrededor()  #Este bloque se ubica aqui para que luego de verificar de que no se perdio, se siga pidiendo coordenadas
+    if [coordjug[0],coordjug[1]] in coordreg:  #Avisa si la coordenada puesta ya fue registrada en el tablero
+        print("Coordenada ya registrada, vuelve a escribir una coordenada")
+    else: 
+        coordreg.append([coordjug[0],coordjug[1]])
+    
     if ganar():
         desplegartablero()
         print("Ganaste!!, Completaste el tablero sin que se activara ninguna bomba")
